@@ -44,6 +44,7 @@ function getDataApi(){
     .then((json) => {
       console.log(json.data);
       animes = json.data;
+      localStorage.setItem("data", JSON.stringify (animes));
     });
     
 }
@@ -54,10 +55,10 @@ function renderAnimes(){
   let html ='';
   let classFavorite ='';
   for(const animeData of animes){
-const favoriteFoundIndex = favorites.findIndex((fav)=> animeData.mal_id=== fav.mal_id);
-if(favoriteFoundIndex !== -1){
-classFavorite='titleFavorite';
-}else classFavorite='';
+    const favoriteFoundIndex = favorites.findIndex((fav)=> animeData.mal_id=== fav.mal_id);
+    if(favoriteFoundIndex !== -1){
+      classFavorite='titleFavorite';
+    } else classFavorite='';
 
     html += `<li ><img src ="${animeData.images.jpg.image_url}" >`;
     html += `<h4 class="liTitles js-liTitles ${classFavorite}" id="${animeData.mal_id}">${animeData.title}</h4> </li>`;
@@ -66,12 +67,27 @@ classFavorite='titleFavorite';
   listenerTitles ();
  
 }
+//<--------LocalStorage------------------------------> Aquí va función que se va a ejecutar cuando carga la página
+function onLoad(){
+  const dataLocalStorage = JSON.parse(localStorage.getItem('data'));
+  console.log(dataLocalStorage);
+ 
+  if(dataLocalStorage){
+    animes = dataLocalStorage;
+    renderAnimes(animes);
+    console.log('hay cosas en el localStorage');
+  }
+  else{
+    getDataApi();
+  }
+}
+onLoad();
 
 //<---------------manejadora--------------------------------->
 function handleClick(ev){
   ev.preventDefault();
   getDataApi();
-  renderAnimes();  
+  renderAnimes();
 }
 
 button.addEventListener('click', handleClick);
