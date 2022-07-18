@@ -6,12 +6,52 @@
 // @import 'layout/header';
 // @import 'layout/footer';
 // @import 'pages/index';
-.main{
-    background-color:dimgrey
+
+//-----------------------BODY STYLES------------>
+.body{
+    background-color: lightseagreen;
 }
-.ulAnime{
-    list-style-type: none;
-}
+
 .h1{
-    color:lightcoral;
+    color: beige;
 }
+.main{
+   display: flex;
+   flex-direction: row;
+   justify-content:space-around;
+}
+
+//-----------------------FAV ANIME STYLES------------>
+
+.resultsAnimeFav{
+    list-style-type: none;
+    
+}
+.animeFavTitle{
+    color:lightcoral;
+    background-color: beige;
+    padding: 10px;
+    border-radius: 10px;
+
+ }
+//-----------------------RESULTS ANIME STYLES------------>
+
+.resultsAnime{
+    list-style-type: none;
+    color: beige;
+  
+}
+
+.resultsAnimeTitle{
+    color:lightcoral;
+    background-color: beige;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.titleFavorite{
+    background-color: beige;
+    color: lightseagreen;
+   
+}
+
