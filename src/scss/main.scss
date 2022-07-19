@@ -10,10 +10,27 @@
 //-----------------------BODY STYLES------------>
 .body{
     background-color: lightseagreen;
+   
 }
-
+.userInput{
+    background-color: beige;
+border: none;
+}
+.reset{
+    background-color: beige;
+    border: none;
+}
+.button{
+    background-color: lightcoral;
+    border: none;
+}
+.form{
+   
+}
 .h1{
     color: beige;
+    font-size: 50px;
+   text-align: center;
 }
 .main{
    display: flex;

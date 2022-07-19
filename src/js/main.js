@@ -3,11 +3,13 @@
 //<------------variables--------------------------->
 const userInput = document.querySelector ('.js-userInput');
 const button = document.querySelector ('.js-button');
-const reset = document.querySelector ('.js-reset');
+const resultsAnimeFav = document.querySelector ('.js-resultsAnimeFav');
 const resultsAnime = document.querySelector('.js-resultsAnime');
+
 
 let animes = [];
 let favorites = [];
+
 
 //<----------------funciones varias------------------------------->
 
@@ -24,7 +26,7 @@ function handleClickFav (ev){
   }
   console.log(favorites);
   renderAnimes();
-  
+
 }
 
 function listenerTitles (){
@@ -35,7 +37,6 @@ function listenerTitles (){
 }
 
 
-
 // <------------traer datos del servidor------>
 function getDataApi(){
   const userAnimeSearch = userInput.value.toLowerCase();
@@ -44,12 +45,13 @@ function getDataApi(){
     .then((json) => {
       console.log(json.data);
       animes = json.data;
-      localStorage.setItem("data", JSON.stringify (animes));
+      renderAnimes();
     });
     
 }
 
 //<----------------renderizar (pintar página)------------------------------->
+
 
 function renderAnimes(){
   let html ='';
@@ -62,32 +64,27 @@ function renderAnimes(){
 
     html += `<li ><img src ="${animeData.images.jpg.image_url}" >`;
     html += `<h4 class="liTitles js-liTitles ${classFavorite}" id="${animeData.mal_id}">${animeData.title}</h4> </li>`;
-  }
+  }  
   resultsAnime.innerHTML = html;
   listenerTitles ();
- 
+
 }
-//<--------LocalStorage------------------------------> Aquí va función que se va a ejecutar cuando carga la página
-function onLoad(){
-  const dataLocalStorage = JSON.parse(localStorage.getItem('data'));
-  console.log(dataLocalStorage);
- 
-  if(dataLocalStorage){
-    animes = dataLocalStorage;
-    renderAnimes(animes);
-    console.log('hay cosas en el localStorage');
-  }
-  else{
-    getDataApi();
-  }
-}
-onLoad();
+// function addFavList (){
+//   let html='';
+//   let addFavorite='';
+//  const resultsAnimeFav = document.querySelector ('.js-resultsAnimeFav');
+
+// }html+=`<li ><img src ="${animeData.images.jpg.image_url}" >`;
+// resultsAnimeFav.innerHTML = html;
+// addFavList ();
+// }
 
 //<---------------manejadora--------------------------------->
 function handleClick(ev){
   ev.preventDefault();
   getDataApi();
-  renderAnimes();
+  
 }
 
 button.addEventListener('click', handleClick);
+
