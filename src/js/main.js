@@ -29,6 +29,19 @@ function handleClickFav (ev){
   renderFavList ();
 }
 
+function onLoad(){
+  const dataLocalStorage= JSON.parse (localStorage.getItem('data'));
+  console.log(dataLocalStorage);
+
+  if (dataLocalStorage){
+    favorites = dataLocalStorage;
+    renderFavList(favorites);
+  } else{getDataApi();
+  }
+  onLoad(); 
+}
+
+
 function listenerTitles (){
   const liTitles = document.querySelectorAll ('.js-liTitles');
   for (const li of liTitles ){
@@ -45,6 +58,7 @@ function getDataApi(){
     .then((json) => {
       console.log(json.data);
       animes = json.data;
+      localStorage.setItem('data', JSON.stringify(favorites));
       renderAnimes();
     });
     
@@ -77,18 +91,15 @@ function renderFavList (){
     html += `<li ><img src ="${animeData.images.jpg.image_url}" >`;
     html += `<h4 class="liTitles js-liTitles" id="${animeData.mal_id}">${animeData.title}</h4> </li>`;
   }
-  
   const resultsAnimeFav = document.querySelector ('.js-resultsAnimeFav');
   resultsAnimeFav.innerHTML=html;
-  
-
 }
+
 
 //<---------------manejadora--------------------------------->
 function handleClick(ev){
   ev.preventDefault();
   getDataApi();
-  
 }
 
 button.addEventListener('click', handleClick);
