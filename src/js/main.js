@@ -26,7 +26,7 @@ function handleClickFav (ev){
   }
   console.log(favorites);
   renderAnimes();
-
+  renderFavList ();
 }
 
 function listenerTitles (){
@@ -69,15 +69,20 @@ function renderAnimes(){
   listenerTitles ();
 
 }
-// function addFavList (){
-//   let html='';
-//   let addFavorite='';
-//  const resultsAnimeFav = document.querySelector ('.js-resultsAnimeFav');
 
-// }html+=`<li ><img src ="${animeData.images.jpg.image_url}" >`;
-// resultsAnimeFav.innerHTML = html;
-// addFavList ();
-// }
+function renderFavList (){
+  let html='';
+  let addFavorite='';
+  for(const animeData of favorites){
+    html += `<li ><img src ="${animeData.images.jpg.image_url}" >`;
+    html += `<h4 class="liTitles js-liTitles" id="${animeData.mal_id}">${animeData.title}</h4> </li>`;
+  }
+  
+  const resultsAnimeFav = document.querySelector ('.js-resultsAnimeFav');
+  resultsAnimeFav.innerHTML=html;
+  
+
+}
 
 //<---------------manejadora--------------------------------->
 function handleClick(ev){
