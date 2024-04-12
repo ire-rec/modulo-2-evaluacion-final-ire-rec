@@ -36,6 +36,9 @@
 		"type": "git",
 		"url": "git+ssh://git@github.com:Adalab/adalab-web-starter-kit.git"
 	},
+	"prettier": {
+		"singleQuote": true
+	  },
 	"author": "Adalab",
 	"license": "MIT",
 	"homepage": "https://github.com/adalab/adalab-web-starter-kit"
